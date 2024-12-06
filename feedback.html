@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geri Bildirim</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .feedback-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-container h1 {
+            font-size: 24px;
+            color: #1E284A;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feedback-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feedback-container label {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .feedback-container input,
+        .feedback-container textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .feedback-container button {
+            padding: 10px;
+            background-color: #1E284A;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .feedback-container button:hover {
+            background-color: #E7191F;
+        }
+
+        .feedback-container button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .feedback-message {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="feedback-container">
+        <h1>Geri Bildirim</h1>
+        <form id="feedback-form" action="https://formspree.io/f/xdkojrvv" method="POST">
+            <label>
+                Email Adresiniz:
+                <input type="email" name="email" required>
+            </label>
+            <label>
+                Mesajınız:
+                <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button type="submit" id="submit-button">Gönder</button>
+        </form>
+        <div id="feedback-message" class="feedback-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('feedback-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = event.target;
+            var data = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            var submitButton = document.getElementById('submit-button');
+            submitButton.disabled = true; // Disable the button
+            xhr.open(form.method, form.action);
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                var messageElement = document.getElementById('feedback-message');
+                if (xhr.status === 200) {
+                    form.reset();
+                    messageElement.textContent = 'Mail başarıyla gönderildi!';
+                    messageElement.className = 'feedback-message success';
+                    setTimeout(function () {
+                        window.location.href = 'index.html'; // Redirect to homepage
+                    }, 3000); // 3-second delay
+                } else {
+                    messageElement.textContent = 'Mail gönderilirken bir hata oluştu. Lütfen tekrar deneyin.';
+                    messageElement.className = 'feedback-message error';
+                    submitButton.disabled = false; // Re-enable the button if there's an error
+                }
+            };
+            xhr.send(data);
+        });
+    </script>
+</body>
+
+</html>
