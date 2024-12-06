@@ -1,0 +1,138 @@
+/* Genel stil */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Başlık ve profil resminin stili */
+.header {
+    margin-bottom: 30px;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 3px solid #1E284A;
+    box-sizing: border-box;
+}
+
+h1,
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #1E284A;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* Linklerin stili */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.link {
+    text-decoration: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Linklere özel renkler */
+.appstore {
+    background-color: #E7191F;
+    color: white;
+}
+
+.playstore {
+    background-color: #1E284A;
+    color: white;
+}
+
+.tiktok {
+    background-color: #E7191F;
+    color: white;
+}
+
+.instagram {
+    background-color: #1E284A;
+    color: white;
+}
+
+/* Hover efektleri */
+.link:hover {
+    filter: brightness(85%);
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .profile-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .link {
+        font-size: 16px;
+    }
+}
+
+.about-us {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.description p,
+.about-us p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.description {
+    margin: 20px 0;
+    /* Adds vertical spacing above and below the description */
+}
